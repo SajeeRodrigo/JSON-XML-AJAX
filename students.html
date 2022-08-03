@@ -1,0 +1,79 @@
+<html>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 5px;
+    }
+</style>
+<body> 
+    <h2>Student List:</h2>
+
+    <table id="demo"></table>
+
+    <script>
+       
+        var text, parser, xmlDoc;
+
+        text = "<CLASS>"+
+            "<student>" +
+            "<name>Sajee Rodrigo</name>" +
+            "<subject>Advanced Web</subject>" +
+            "<marks>98</marks>" +
+            "</student>"+
+
+            "<student>" +
+            "<name>Ann Marian</name>" +
+            "<subject>Advanced Web</subject>" +
+            "<marks>68</marks>" +
+            "</student>" +
+
+            "<student>" +
+            "<name>Chanduli Hasara</name>" +
+            "<subject>Advanced Web</subject>" +
+            "<marks>80</marks>" +
+            "</student>" +
+
+            "<student>" +
+            "<name>Hashini</name>" +
+            "<subject>Advanced Web</subject>" +
+            "<marks>20</marks>" +
+            "</student>" +
+
+            "<student>" +
+            "<name>Himaransi</name>" +
+            "<subject>Advanced Web</subject>" +
+            "<marks>30</marks>" +
+            "</student>" +
+            "</CLASS>";
+
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(text, "text/xml");
+
+         var table = "<tr><th>NAME</th><th>SUBJECT</th><th>MARKS</th></tr>";
+
+       x = xmlDoc.getElementsByTagName("student");
+
+    for (var i = 0; i < x.length; i++) {
+        table += "<tr><td>" +
+            x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue +
+            "</td><td>" +
+            x[i].getElementsByTagName("subject")[0].childNodes[0].nodeValue +
+            "</td><td>" +               
+            x[i].getElementsByTagName("marks")[0].childNodes[0].nodeValue +
+            "</td></tr>";
+    }
+        
+        
+    document.getElementById("demo").innerHTML = table;
+
+    </script>
+
+</body>
+</html>
